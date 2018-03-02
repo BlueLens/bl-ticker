@@ -7,9 +7,8 @@ import redis
 from bluelens_log import Logging
 from bluelens_k8s.pod import Pod
 
-
 REDIS_TICKER_KEY = os.environ['TICKER_KEY']
-REDIS_TICKER_VALUE = os.environ['TICKER_VALUE']
+REDIS_TICKER_VALUE = int(os.environ['TICKER_VALUE'])
 
 SPAWN_ID = os.environ['SPAWN_ID']
 RELEASE_MODE = os.environ['RELEASE_MODE']
@@ -31,6 +30,7 @@ class Ticker(Pod):
   def run(self):
     while True:
       time.sleep(REDIS_TICKER_VALUE)
+      rconn.lrem(REDIS_TICKER_KEY, count=0, value='@')
       rconn.lpush(REDIS_TICKER_KEY, '@')
 
 if __name__ == '__main__':
