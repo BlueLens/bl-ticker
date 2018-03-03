@@ -10,8 +10,6 @@ from bluelens_k8s.pod import Pod
 REDIS_TICKER_KEY = os.environ['TICKER_KEY']
 REDIS_TICKER_VALUE = int(os.environ['TICKER_VALUE'])
 
-SPAWN_ID = os.environ['SPAWN_ID']
-RELEASE_MODE = os.environ['RELEASE_MODE']
 REDIS_SERVER = os.environ['REDIS_SERVER']
 REDIS_PASSWORD = os.environ['REDIS_PASSWORD']
 
